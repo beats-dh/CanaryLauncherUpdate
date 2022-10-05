@@ -5,16 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CanaryLauncherUpdate"
         mc:Ignorable="d" 
-		Height="400"
-		Width="800"
+		Height="434"
+		Width="837"
 		FontFamily="Verdana"
 		Background="#131415"
 		x:Name="home"
-		WindowStyle="None"
-		ResizeMode="NoResize"
+		ResizeMode="CanMinimize"
 		WindowStartupLocation="CenterScreen"
-		Title="Tibia Launcher"
-		Loaded="TibiaLauncher_Load">
+		Title="Canary Launcher"
+		Loaded="TibiaLauncher_Load" Icon="/Assets/logo.png">
 	<StackPanel>
 		<StackPanel.Background>
 			<ImageBrush ImageSource="Assets/background.jpg" Stretch="UniformToFill" Opacity="0.3"></ImageBrush>
@@ -125,15 +124,15 @@
 					Margin="10, 5, 10, 0"></StackPanel>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel>
-			<TextBlock
+        <StackPanel Height="30">
+            <TextBlock
 				x:Name="labelVersion"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Bottom"
 				Margin="8, 5, 0, 0"
 				FontFamily="Verdana"
 				FontSize="12"
-				Foreground="#747474">version</TextBlock>
-		</StackPanel>
-	</StackPanel>
+				Foreground="#747474"><Run Text="version"/></TextBlock>
+        </StackPanel>
+    </StackPanel>
 </Window>
