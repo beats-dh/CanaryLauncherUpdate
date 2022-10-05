@@ -16,12 +16,12 @@ namespace CanaryLauncherUpdate
 	/// </summary>
 	public partial class MainWindow : Window
     {
-		WebClient webClient = new WebClient();
+		readonly WebClient webClient = new();
 		bool clientDownloaded = false;
 		bool needUpdate = false;
-		string clientName = "client.exe";
-		string urlClient = "https://github.com/lucasgiovannibr/clientlauncherupdate/archive/refs/heads/main.zip";
-		string urlVersion = "https://raw.githubusercontent.com/lucasgiovannibr/clientlauncherupdate/main/version.txt";
+		readonly string clientName = "client.exe";
+		readonly string urlClient = "https://github.com/lucasgiovannibr/clientlauncherupdate/archive/refs/heads/main.zip";
+		readonly string urlVersion = "https://raw.githubusercontent.com/lucasgiovannibr/clientlauncherupdate/main/version.txt";
 		string currentVersion = "";
 
 		public MainWindow()
@@ -45,7 +45,7 @@ namespace CanaryLauncherUpdate
 
 			if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient/clientlauncherupdate-main/version.txt"))
 			{
-				StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient/clientlauncherupdate-main/version.txt");
+				StreamReader reader = new(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient/clientlauncherupdate-main/version.txt");
 				string myVersion = reader.ReadLine();
 				reader.Close();
 
@@ -80,7 +80,7 @@ namespace CanaryLauncherUpdate
 			}
 		}
 
-		private void buttonPlay_Click(object sender, RoutedEventArgs e)
+		private void ButtonPlay_Click(object sender, RoutedEventArgs e)
 		{
 			if (needUpdate == true)
 			{
@@ -150,7 +150,7 @@ namespace CanaryLauncherUpdate
 		static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
 		static string SizeSuffix(Int64 value, int decimalPlaces = 1)
 		{
-			if (decimalPlaces < 0) { throw new ArgumentOutOfRangeException("decimalPlaces"); }
+			if (decimalPlaces < 0) { throw new ArgumentOutOfRangeException(nameof(decimalPlaces)); }
 			if (value < 0) { return "-" + SizeSuffix(-value, decimalPlaces); }
 			if (value == 0) { return string.Format("{0:n" + decimalPlaces + "} bytes", 0); }
 
@@ -167,11 +167,11 @@ namespace CanaryLauncherUpdate
 				SizeSuffixes[mag]);
 		}
 
-		private void buttonPlay_MouseEnter(object sender, MouseEventArgs e)
+		private void ButtonPlay_MouseEnter(object sender, MouseEventArgs e)
 		{
 			if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient/clientlauncherupdate-main/version.txt"))
 			{
-				StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient/clientlauncherupdate-main/version.txt");
+				StreamReader reader = new(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient/clientlauncherupdate-main/version.txt");
 				string myVersion = reader.ReadLine();
 				reader.Close();
 
@@ -190,11 +190,11 @@ namespace CanaryLauncherUpdate
 			}
 		}
 
-		private void buttonPlay_MouseLeave(object sender, MouseEventArgs e)
+		private void ButtonPlay_MouseLeave(object sender, MouseEventArgs e)
 		{
 			if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient/clientlauncherupdate-main/version.txt"))
 			{
-				StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient/clientlauncherupdate-main/version.txt");
+				StreamReader reader = new(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient/clientlauncherupdate-main/version.txt");
 				string myVersion = reader.ReadLine();
 				reader.Close();
 

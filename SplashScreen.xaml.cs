@@ -11,22 +11,21 @@ namespace CanaryLauncherUpdate
 	/// </summary>
 	public partial class SplashScreen : Window
 	{
-		WebClient webClient = new WebClient();
-
-		string urlClient = "https://github.com/lucasgiovannibr/clientlauncherupdate/archive/refs/heads/main.zip";
-		string urlVersion = "https://raw.githubusercontent.com/lucasgiovannibr/clientlauncherupdate/main/version.txt";
+		readonly WebClient webClient = new();
+		readonly string urlClient = "https://github.com/lucasgiovannibr/clientlauncherupdate/archive/refs/heads/main.zip";
+		readonly string urlVersion = "https://raw.githubusercontent.com/lucasgiovannibr/clientlauncherupdate/main/version.txt";
 		string currentVersion = "";
-		DispatcherTimer timer = new DispatcherTimer();
+		readonly DispatcherTimer timer = new();
 
 		public SplashScreen()
 		{
 			InitializeComponent();
-			timer.Tick += new EventHandler(timer_SplashScreen);
+			timer.Tick += new EventHandler(TimerSplashScreen);
 			timer.Interval = new TimeSpan(0, 0, 5); // 5 seconds
 			timer.Start();
 		}
 
-		public void timer_SplashScreen(object Source, EventArgs e)
+		public void TimerSplashScreen(object Source, EventArgs e)
 		{
 			// Check current version
 			currentVersion = webClient.DownloadString(urlVersion);
@@ -47,7 +46,7 @@ namespace CanaryLauncherUpdate
 			{
 				Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/CanaryClient");
 			}
-			MainWindow mainWindow = new MainWindow();
+			MainWindow mainWindow = new();
 			this.Close();
 			mainWindow.Show();
 			timer.Stop();
